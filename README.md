@@ -2,7 +2,30 @@
 
 A Python/FastAPI LLM gateway that demonstrates how to run, observe, and recover an AI service. It records each generation request in SQLite and exposes reliability and cost metrics through APIs. Both model adapters are simulators: **no API key, paid model, or external service is required.**
 
+## Demo screenshots
 
+These screenshots show a local demo using simulated LLM providers.
+The trace and metrics reports use actual API responses from the demo.
+
+### API documentation
+
+Available endpoints for generation, health checks, traces, metrics, and incidents.
+
+![API documentation](assets/screenshots/api-docs.png)
+
+### Provider failure and fallback recovery
+
+The primary model fails, the gateway retries twice, and the fallback
+model returns a successful response. Each attempt is recorded in the trace.
+
+![Fallback recovery trace](assets/screenshots/fallback-trace.png)
+
+### Reliability and cost metrics
+
+Results from eight demo requests covering cache hits, retries, timeouts,
+model fallback, circuit breaking, and deterministic fallback.
+
+![Reliability and cost metrics](assets/screenshots/metrics-summary.png)
 
 ## What you can demonstrate
 
