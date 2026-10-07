@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python -m pip install -r requirements-dev.lock
+
+      - run: python -m pip install -e . --no-deps
+
+      - name: Validate version
+        run: |
+          python - <<'PY'
+          import os
+          import tomllib
+
+          with open("pyproject.toml", "rb") as source:
+              version = tomllib.load(source)["project"]["version"]
+
+          assert os.environ["GITHUB_REF_NAME"] == f"v{version}", "Tag/version mismatch"
+          PY
+
+      - run: python -m ruff check .
+
+      - run: python -m ruff format --check .
+
+      - run: python -m pytest
+
+      - run: python -m scripts.demo --in-process
+
+  publish:
+    needs: validate
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Archive tagged source
+        run: git archive --format=zip --prefix=llmops-observability-platform/ HEAD -o llmops-observability-platform.zip
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" llmops-observability-platform.zip --verify-tag --title "$RELEASE_TAG" --notes-file CHANGELOG.md
