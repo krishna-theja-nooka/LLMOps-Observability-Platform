@@ -2,7 +2,7 @@
 
 A Python/FastAPI LLM gateway that demonstrates how to run, observe, and recover an AI service. It records each generation request in SQLite and exposes reliability and cost metrics through APIs. Both model adapters are simulators: **no API key, paid model, or external service is required.**
 
-This is Project 5 in an AI engineering portfolio. It adds operations to the RAG, SQL-agent, safe-workflow, and evaluation layers from Projects 1–4. It is self-contained; those repositories are not required to run it.
+
 
 ## What you can demonstrate
 
