@@ -1,0 +1,50 @@
+name: Publish Docker Package
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements-dev.lock
+          python -m pip install -e . --no-deps
+
+      - name: Validate application
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+          python -m pytest
+
+      - name: Build Docker image
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          IMAGE="ghcr.io/${REPOSITORY,,}"
+          docker build \
+            --label "org.opencontainers.image.source=https://github.com/${REPOSITORY}" \
+            --tag "$IMAGE:latest" .
+
+      - name: Publish Docker image
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          IMAGE="ghcr.io/${REPOSITORY,,}"
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io \
+            --username "$GH_ACTOR" --password-stdin
+          docker push "$IMAGE:latest"
