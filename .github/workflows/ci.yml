@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: requirements-dev.lock
+
+      - run: python -m pip install -r requirements-dev.lock
+
+      - run: python -m pip install -e . --no-deps
+
+      - run: python -m ruff check .
+
+      - run: python -m ruff format --check .
+
+      - run: python -m pytest --junitxml=junit.xml
+
+      - run: python -m scripts.demo --in-process --output reports/demo.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validation-python-${{ matrix.python }}
+          path: |
+            coverage.xml
+            junit.xml
+            reports/demo.json
