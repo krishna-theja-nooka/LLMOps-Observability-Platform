@@ -1,0 +1,777 @@
+{
+  "generated_at": "2026-10-04T01:30:32.263981+00:00",
+  "provider": "simulator",
+  "outcomes": [
+    {
+      "case": "primary success",
+      "http_status": 200,
+      "body": {
+        "trace_id": "29b496da-f211-42f4-a32b-001d92668a0f",
+        "response": "sim-primary: simulated answer for a 8-token prompt.",
+        "model": "sim-primary",
+        "prompt_version": "v1",
+        "status": "success",
+        "cache_hit": false
+      },
+      "trace_id": "29b496da-f211-42f4-a32b-001d92668a0f"
+    },
+    {
+      "case": "cache hit",
+      "http_status": 200,
+      "body": {
+        "trace_id": "9063ac6f-83ef-4b35-9367-a6b44d687b47",
+        "response": "sim-primary: simulated answer for a 8-token prompt.",
+        "model": "sim-primary",
+        "prompt_version": "v1",
+        "status": "success",
+        "cache_hit": true
+      },
+      "trace_id": "9063ac6f-83ef-4b35-9367-a6b44d687b47"
+    },
+    {
+      "case": "retry recovery",
+      "http_status": 200,
+      "body": {
+        "trace_id": "0f5983e2-ded2-45ad-ad58-39819bc9435a",
+        "response": "sim-primary: simulated answer for a 6-token prompt.",
+        "model": "sim-primary",
+        "prompt_version": "v1",
+        "status": "success",
+        "cache_hit": false
+      },
+      "trace_id": "0f5983e2-ded2-45ad-ad58-39819bc9435a"
+    },
+    {
+      "case": "timeout fallback",
+      "http_status": 200,
+      "body": {
+        "trace_id": "8b605fdd-fa84-4e04-9c3a-31418b3bee1f",
+        "response": "sim-fallback: simulated answer for a 6-token prompt.",
+        "model": "sim-fallback",
+        "prompt_version": "v1",
+        "status": "fallback",
+        "cache_hit": false
+      },
+      "trace_id": "8b605fdd-fa84-4e04-9c3a-31418b3bee1f"
+    },
+    {
+      "case": "provider fallback 1",
+      "http_status": 200,
+      "body": {
+        "trace_id": "fe11a203-970d-401f-8007-c011f316b11a",
+        "response": "sim-fallback: simulated answer for a 5-token prompt.",
+        "model": "sim-fallback",
+        "prompt_version": "v1",
+        "status": "fallback",
+        "cache_hit": false
+      },
+      "trace_id": "fe11a203-970d-401f-8007-c011f316b11a"
+    },
+    {
+      "case": "provider fallback 2",
+      "http_status": 200,
+      "body": {
+        "trace_id": "4f4acfb3-c14e-4e18-a202-7bd8b56f60a4",
+        "response": "sim-fallback: simulated answer for a 5-token prompt.",
+        "model": "sim-fallback",
+        "prompt_version": "v1",
+        "status": "fallback",
+        "cache_hit": false
+      },
+      "trace_id": "4f4acfb3-c14e-4e18-a202-7bd8b56f60a4"
+    },
+    {
+      "case": "circuit bypass",
+      "http_status": 200,
+      "body": {
+        "trace_id": "b969a7b5-e2ba-4a09-91e1-6bcfe4af3863",
+        "response": "sim-fallback: simulated answer for a 8-token prompt.",
+        "model": "sim-fallback",
+        "prompt_version": "v1",
+        "status": "fallback",
+        "cache_hit": false
+      },
+      "trace_id": "b969a7b5-e2ba-4a09-91e1-6bcfe4af3863"
+    },
+    {
+      "case": "both paths unavailable",
+      "http_status": 200,
+      "body": {
+        "trace_id": "9d96560b-64f6-4697-94af-8679440fe815",
+        "response": "The AI service is temporarily unavailable. Please try again shortly.",
+        "model": "deterministic",
+        "prompt_version": "v1",
+        "status": "degraded",
+        "cache_hit": false
+      },
+      "trace_id": "9d96560b-64f6-4697-94af-8679440fe815"
+    },
+    {
+      "case": "input safety",
+      "http_status": 400,
+      "body": {
+        "detail": "Prompt rejected by demonstration safety policy"
+      },
+      "trace_id": "155e8cd0-a6d8-4f1e-974e-d611dbcd33c1"
+    }
+  ],
+  "traces": [
+    {
+      "trace_id": "29b496da-f211-42f4-a32b-001d92668a0f",
+      "created_at": "2026-10-04T01:30:31.758861+00:00",
+      "model": "sim-primary",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "success",
+      "http_status": 200,
+      "latency_ms": 2.898,
+      "retry_count": 0,
+      "cache_hit": false,
+      "fallback_used": false,
+      "safety_outcome": "allowed",
+      "estimated_cost": 2.35e-05,
+      "input_tokens": 8,
+      "output_tokens": 13,
+      "usage_unknown": false,
+      "error_type": null,
+      "attempts": [
+        {
+          "model": "sim-primary",
+          "attempt": 1,
+          "status": "success",
+          "input_tokens": 8,
+          "output_tokens": 13,
+          "estimated_cost": 2.35e-05,
+          "usage_unknown": false,
+          "latency_ms": 1.192
+        }
+      ],
+      "events": []
+    },
+    {
+      "trace_id": "9063ac6f-83ef-4b35-9367-a6b44d687b47",
+      "created_at": "2026-10-04T01:30:31.764808+00:00",
+      "model": "sim-primary",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "success",
+      "http_status": 200,
+      "latency_ms": 0.57,
+      "retry_count": 0,
+      "cache_hit": true,
+      "fallback_used": false,
+      "safety_outcome": "allowed",
+      "estimated_cost": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "usage_unknown": false,
+      "error_type": null,
+      "attempts": [],
+      "events": []
+    },
+    {
+      "trace_id": "0f5983e2-ded2-45ad-ad58-39819bc9435a",
+      "created_at": "2026-10-04T01:30:31.767433+00:00",
+      "model": "sim-primary",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "success",
+      "http_status": 200,
+      "latency_ms": 12.818,
+      "retry_count": 1,
+      "cache_hit": false,
+      "fallback_used": false,
+      "safety_outcome": "allowed",
+      "estimated_cost": 2.25e-05,
+      "input_tokens": 6,
+      "output_tokens": 13,
+      "usage_unknown": true,
+      "error_type": "ProviderFailure",
+      "attempts": [
+        {
+          "model": "sim-primary",
+          "attempt": 1,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.122
+        },
+        {
+          "model": "sim-primary",
+          "attempt": 2,
+          "status": "success",
+          "input_tokens": 6,
+          "output_tokens": 13,
+          "estimated_cost": 2.25e-05,
+          "usage_unknown": false,
+          "latency_ms": 1.11
+        }
+      ],
+      "events": [
+        {
+          "kind": "retry",
+          "model": "sim-primary",
+          "delay_ms": 9.92
+        }
+      ]
+    },
+    {
+      "trace_id": "8b605fdd-fa84-4e04-9c3a-31418b3bee1f",
+      "created_at": "2026-10-04T01:30:31.783743+00:00",
+      "model": "sim-fallback",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "fallback",
+      "http_status": 200,
+      "latency_ms": 335.253,
+      "retry_count": 2,
+      "cache_hit": false,
+      "fallback_used": true,
+      "safety_outcome": "allowed",
+      "estimated_cost": 4.5e-06,
+      "input_tokens": 6,
+      "output_tokens": 13,
+      "usage_unknown": true,
+      "error_type": "TimeoutError",
+      "attempts": [
+        {
+          "model": "sim-primary",
+          "attempt": 1,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "TimeoutError",
+          "latency_ms": 100.323
+        },
+        {
+          "model": "sim-primary",
+          "attempt": 2,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "TimeoutError",
+          "latency_ms": 100.424
+        },
+        {
+          "model": "sim-primary",
+          "attempt": 3,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "TimeoutError",
+          "latency_ms": 100.31
+        },
+        {
+          "model": "sim-fallback",
+          "attempt": 1,
+          "status": "success",
+          "input_tokens": 6,
+          "output_tokens": 13,
+          "estimated_cost": 4.5e-06,
+          "usage_unknown": false,
+          "latency_ms": 1.156
+        }
+      ],
+      "events": [
+        {
+          "kind": "retry",
+          "model": "sim-primary",
+          "delay_ms": 8.91
+        },
+        {
+          "kind": "retry",
+          "model": "sim-primary",
+          "delay_ms": 21.83
+        },
+        {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      ]
+    },
+    {
+      "trace_id": "fe11a203-970d-401f-8007-c011f316b11a",
+      "created_at": "2026-10-04T01:30:32.122579+00:00",
+      "model": "sim-fallback",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "fallback",
+      "http_status": 200,
+      "latency_ms": 32.315,
+      "retry_count": 2,
+      "cache_hit": false,
+      "fallback_used": true,
+      "safety_outcome": "allowed",
+      "estimated_cost": 4.4e-06,
+      "input_tokens": 5,
+      "output_tokens": 13,
+      "usage_unknown": true,
+      "error_type": "ProviderFailure",
+      "attempts": [
+        {
+          "model": "sim-primary",
+          "attempt": 1,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.117
+        },
+        {
+          "model": "sim-primary",
+          "attempt": 2,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.106
+        },
+        {
+          "model": "sim-primary",
+          "attempt": 3,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.13
+        },
+        {
+          "model": "sim-fallback",
+          "attempt": 1,
+          "status": "success",
+          "input_tokens": 5,
+          "output_tokens": 13,
+          "estimated_cost": 4.4e-06,
+          "usage_unknown": false,
+          "latency_ms": 1.124
+        }
+      ],
+      "events": [
+        {
+          "kind": "retry",
+          "model": "sim-primary",
+          "delay_ms": 9.45
+        },
+        {
+          "kind": "retry",
+          "model": "sim-primary",
+          "delay_ms": 16.17
+        },
+        {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      ]
+    },
+    {
+      "trace_id": "4f4acfb3-c14e-4e18-a202-7bd8b56f60a4",
+      "created_at": "2026-10-04T01:30:32.158428+00:00",
+      "model": "sim-fallback",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "fallback",
+      "http_status": 200,
+      "latency_ms": 34.308,
+      "retry_count": 2,
+      "cache_hit": false,
+      "fallback_used": true,
+      "safety_outcome": "allowed",
+      "estimated_cost": 4.4e-06,
+      "input_tokens": 5,
+      "output_tokens": 13,
+      "usage_unknown": true,
+      "error_type": "ProviderFailure",
+      "attempts": [
+        {
+          "model": "sim-primary",
+          "attempt": 1,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.11
+        },
+        {
+          "model": "sim-primary",
+          "attempt": 2,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.109
+        },
+        {
+          "model": "sim-primary",
+          "attempt": 3,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.149
+        },
+        {
+          "model": "sim-fallback",
+          "attempt": 1,
+          "status": "success",
+          "input_tokens": 5,
+          "output_tokens": 13,
+          "estimated_cost": 4.4e-06,
+          "usage_unknown": false,
+          "latency_ms": 1.111
+        }
+      ],
+      "events": [
+        {
+          "kind": "retry",
+          "model": "sim-primary",
+          "delay_ms": 9.19
+        },
+        {
+          "kind": "retry",
+          "model": "sim-primary",
+          "delay_ms": 17.05
+        },
+        {
+          "kind": "circuit_opened",
+          "model": "sim-primary"
+        },
+        {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      ]
+    },
+    {
+      "trace_id": "b969a7b5-e2ba-4a09-91e1-6bcfe4af3863",
+      "created_at": "2026-10-04T01:30:32.196102+00:00",
+      "model": "sim-fallback",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "fallback",
+      "http_status": 200,
+      "latency_ms": 17.166,
+      "retry_count": 0,
+      "cache_hit": false,
+      "fallback_used": true,
+      "safety_outcome": "allowed",
+      "estimated_cost": 4.7e-06,
+      "input_tokens": 8,
+      "output_tokens": 13,
+      "usage_unknown": false,
+      "error_type": "CircuitOpen",
+      "attempts": [
+        {
+          "model": "sim-fallback",
+          "attempt": 1,
+          "status": "success",
+          "input_tokens": 8,
+          "output_tokens": 13,
+          "estimated_cost": 4.7e-06,
+          "usage_unknown": false,
+          "latency_ms": 1.121
+        }
+      ],
+      "events": [
+        {
+          "kind": "circuit_skipped",
+          "model": "sim-primary"
+        },
+        {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      ]
+    },
+    {
+      "trace_id": "9d96560b-64f6-4697-94af-8679440fe815",
+      "created_at": "2026-10-04T01:30:32.217168+00:00",
+      "model": "deterministic",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "degraded",
+      "http_status": 200,
+      "latency_ms": 38.63,
+      "retry_count": 2,
+      "cache_hit": false,
+      "fallback_used": true,
+      "safety_outcome": "allowed",
+      "estimated_cost": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "usage_unknown": true,
+      "error_type": "ProviderFailure",
+      "attempts": [
+        {
+          "model": "sim-fallback",
+          "attempt": 1,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.12
+        },
+        {
+          "model": "sim-fallback",
+          "attempt": 2,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.116
+        },
+        {
+          "model": "sim-fallback",
+          "attempt": 3,
+          "status": "error",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost": 0.0,
+          "usage_unknown": true,
+          "error_type": "ProviderFailure",
+          "latency_ms": 1.122
+        }
+      ],
+      "events": [
+        {
+          "kind": "circuit_skipped",
+          "model": "sim-primary"
+        },
+        {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        },
+        {
+          "kind": "retry",
+          "model": "sim-fallback",
+          "delay_ms": 8.84
+        },
+        {
+          "kind": "retry",
+          "model": "sim-fallback",
+          "delay_ms": 23.8
+        },
+        {
+          "kind": "deterministic_fallback"
+        }
+      ]
+    },
+    {
+      "trace_id": "155e8cd0-a6d8-4f1e-974e-d611dbcd33c1",
+      "created_at": "2026-10-04T01:30:32.259680+00:00",
+      "model": "sim-primary",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "blocked",
+      "http_status": 400,
+      "latency_ms": 0.521,
+      "retry_count": 0,
+      "cache_hit": false,
+      "fallback_used": false,
+      "safety_outcome": "input_blocked",
+      "estimated_cost": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "usage_unknown": false,
+      "error_type": "InputBlocked",
+      "attempts": [],
+      "events": [
+        {
+          "kind": "safety_blocked",
+          "stage": "input"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "window_start": "2026-10-03T01:30:32.271571+00:00",
+    "requests": 10,
+    "eligible_requests": 8,
+    "requests_by_status": {
+      "success": 3,
+      "fallback": 4,
+      "degraded": 1,
+      "blocked": 1,
+      "rate_limited": 1
+    },
+    "p50_latency_ms": 17.166,
+    "p95_latency_ms": 335.253,
+    "error_rate": 0.0,
+    "fallback_rate": 0.625,
+    "cache_hit_rate": 0.125,
+    "degraded_rate": 0.125,
+    "estimated_cost_by_model": {
+      "sim-primary": 4.6e-05,
+      "sim-fallback": 1.8e-05
+    },
+    "estimated_cost_total": 6.4e-05,
+    "unknown_usage_attempts": 13,
+    "cost_currency": "USD",
+    "cost_is_simulated": true
+  },
+  "incidents": {
+    "incidents": [
+      {
+        "id": 11,
+        "trace_id": "27201136-ac5f-4f9b-ab4f-78ef68450e5b",
+        "created_at": "2026-10-04T01:30:32.268494+00:00",
+        "kind": "rate_limited",
+        "payload": {
+          "kind": "rate_limited"
+        }
+      },
+      {
+        "id": 10,
+        "trace_id": "155e8cd0-a6d8-4f1e-974e-d611dbcd33c1",
+        "created_at": "2026-10-04T01:30:32.259680+00:00",
+        "kind": "safety_blocked",
+        "payload": {
+          "kind": "safety_blocked",
+          "stage": "input"
+        }
+      },
+      {
+        "id": 9,
+        "trace_id": "9d96560b-64f6-4697-94af-8679440fe815",
+        "created_at": "2026-10-04T01:30:32.217168+00:00",
+        "kind": "deterministic_fallback",
+        "payload": {
+          "kind": "deterministic_fallback"
+        }
+      },
+      {
+        "id": 8,
+        "trace_id": "9d96560b-64f6-4697-94af-8679440fe815",
+        "created_at": "2026-10-04T01:30:32.217168+00:00",
+        "kind": "fallback",
+        "payload": {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      },
+      {
+        "id": 7,
+        "trace_id": "9d96560b-64f6-4697-94af-8679440fe815",
+        "created_at": "2026-10-04T01:30:32.217168+00:00",
+        "kind": "circuit_skipped",
+        "payload": {
+          "kind": "circuit_skipped",
+          "model": "sim-primary"
+        }
+      },
+      {
+        "id": 6,
+        "trace_id": "b969a7b5-e2ba-4a09-91e1-6bcfe4af3863",
+        "created_at": "2026-10-04T01:30:32.196102+00:00",
+        "kind": "fallback",
+        "payload": {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      },
+      {
+        "id": 5,
+        "trace_id": "b969a7b5-e2ba-4a09-91e1-6bcfe4af3863",
+        "created_at": "2026-10-04T01:30:32.196102+00:00",
+        "kind": "circuit_skipped",
+        "payload": {
+          "kind": "circuit_skipped",
+          "model": "sim-primary"
+        }
+      },
+      {
+        "id": 4,
+        "trace_id": "4f4acfb3-c14e-4e18-a202-7bd8b56f60a4",
+        "created_at": "2026-10-04T01:30:32.158428+00:00",
+        "kind": "fallback",
+        "payload": {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      },
+      {
+        "id": 3,
+        "trace_id": "4f4acfb3-c14e-4e18-a202-7bd8b56f60a4",
+        "created_at": "2026-10-04T01:30:32.158428+00:00",
+        "kind": "circuit_opened",
+        "payload": {
+          "kind": "circuit_opened",
+          "model": "sim-primary"
+        }
+      },
+      {
+        "id": 2,
+        "trace_id": "fe11a203-970d-401f-8007-c011f316b11a",
+        "created_at": "2026-10-04T01:30:32.122579+00:00",
+        "kind": "fallback",
+        "payload": {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      },
+      {
+        "id": 1,
+        "trace_id": "8b605fdd-fa84-4e04-9c3a-31418b3bee1f",
+        "created_at": "2026-10-04T01:30:31.783743+00:00",
+        "kind": "fallback",
+        "payload": {
+          "kind": "fallback",
+          "model": "sim-fallback"
+        }
+      }
+    ],
+    "next_before_id": 1
+  },
+  "quota_check": {
+    "http_status": 429,
+    "trace": {
+      "trace_id": "27201136-ac5f-4f9b-ab4f-78ef68450e5b",
+      "created_at": "2026-10-04T01:30:32.268494+00:00",
+      "model": "sim-primary",
+      "requested_model": "sim-primary",
+      "prompt_version": "v1",
+      "status": "rate_limited",
+      "http_status": 429,
+      "latency_ms": 0.471,
+      "retry_count": 0,
+      "cache_hit": false,
+      "fallback_used": false,
+      "safety_outcome": "not_evaluated",
+      "estimated_cost": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "usage_unknown": false,
+      "error_type": "RateLimited",
+      "attempts": [],
+      "events": [
+        {
+          "kind": "rate_limited"
+        }
+      ]
+    }
+  }
+}
